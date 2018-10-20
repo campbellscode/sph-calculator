@@ -1,0 +1,176 @@
+Private Sub Form_Load()
+    Form1.Caption = "Staples SPH Calculator"
+    Form1.BackColor = vbWhite
+    lblHours.BackColor = vbWhite
+    lblCount.BackColor = vbWhite
+    lblWeight.BackColor = vbWhite
+    lblDiags.BackColor = vbWhite
+    lblOthers.BackColor = vbWhite
+    lblSetups.BackColor = vbWhite
+    lblVRs.BackColor = vbWhite
+    lblTotal.BackColor = vbWhite
+    lblSPH.BackColor = vbWhite
+    lblSPHvalue.BackColor = vbWhite
+    lblSPHvalue.ForeColor = vbRed
+    lblSPH.Font.Size = 12
+    lblSPHvalue.Font.Size = 26
+    lblCredit.BackColor = vbWhite
+    lblCredit.Font.Size = 8
+    lblLink.BackColor = vbWhite
+End Sub
+
+Private Sub Form_Activate()
+    txtHours.SetFocus
+    txtHours.SelStart = 0
+    txtHours.SelLength = Len(txtHours.Text)
+End Sub
+
+Private Sub Form_MouseMove(button As Integer, shift As Integer, x As Single, y As Single)
+    lblLink.ForeColor = vbBlack
+    lblLink.Font.Underline = False
+End Sub
+
+Private Sub txtHours_GotFocus()
+    txtHours.SelStart = 0
+    txtHours.SelLength = Len(txtHours.Text)
+End Sub
+
+Private Sub txtHours_Change()
+    If txtHours.Text = "" Then
+        MsgBox "Please enter a value"
+        txtHours.Text = 7.5
+        txtHours.SetFocus
+        txtHours.SelStart = 0
+        txtHours.SelLength = Len(txtHours.Text)
+    Else
+        Dim total As Double
+        Dim sph As Double
+        
+        total = Val(weightDiags.Text) + Val(weightOthers.Text) + Val(weightSetups.Text) + Val(weightVRs.Text)
+        sph = total / Val(txtHours.Text)
+        lblSPHvalue.Caption = Format$(sph, "###0.0")
+    End If
+    
+End Sub
+
+Private Sub countDiags_GotFocus()
+    countDiags.SelStart = 0
+    countDiags.SelLength = Len(countDiags.Text)
+End Sub
+
+Private Sub countDiags_Change()
+    diag = Val(countDiags.Text) * 0.5
+    weightDiags.Text = diag
+    
+    totalCount = Val(countDiags) + Val(countOthers) + Val(countSetups) + Val(countVRs)
+    countTotal.Text = totalCount
+    
+    totalWeight = Val(weightDiags) + Val(weightOthers) + Val(weightSetups) + Val(weightVRs)
+    weightTotal.Text = totalWeight
+    
+    Dim total As Double
+    Dim sph As Double
+        
+    total = Val(weightDiags.Text) + Val(weightOthers.Text) + Val(weightSetups.Text) + Val(weightVRs.Text)
+    sph = total / Val(txtHours.Text)
+    lblSPHvalue.Caption = Format$(sph, "###0.0")
+End Sub
+
+Private Sub countOthers_GotFocus()
+    countOthers.SelStart = 0
+    countOthers.SelLength = Len(countOthers.Text)
+End Sub
+
+Private Sub countOthers_Change()
+    others = Val(countOthers.Text) * 0.25
+    weightOthers.Text = others
+    
+    totalCount = Val(countDiags) + Val(countOthers) + Val(countSetups) + Val(countVRs)
+    countTotal.Text = totalCount
+    
+    totalWeight = Val(weightDiags) + Val(weightOthers) + Val(weightSetups) + Val(weightVRs)
+    weightTotal.Text = totalWeight
+    
+    Dim total As Double
+    Dim sph As Double
+        
+    total = Val(weightDiags.Text) + Val(weightOthers.Text) + Val(weightSetups.Text) + Val(weightVRs.Text)
+    sph = total / Val(txtHours.Text)
+    lblSPHvalue.Caption = Format$(sph, "###0.0")
+End Sub
+
+Private Sub countSetups_GotFocus()
+    countSetups.SelStart = 0
+    countSetups.SelLength = Len(countSetups.Text)
+End Sub
+
+Private Sub countSetups_Change()
+    setups = Val(countSetups.Text) * 2
+    weightSetups.Text = setups
+    
+    totalCount = Val(countDiags) + Val(countOthers) + Val(countSetups) + Val(countVRs)
+    countTotal.Text = totalCount
+    
+    totalWeight = Val(weightDiags) + Val(weightOthers) + Val(weightSetups) + Val(weightVRs)
+    weightTotal.Text = totalWeight
+    
+    Dim total As Double
+    Dim sph As Double
+        
+    total = Val(weightDiags.Text) + Val(weightOthers.Text) + Val(weightSetups.Text) + Val(weightVRs.Text)
+    sph = total / Val(txtHours.Text)
+    lblSPHvalue.Caption = Format$(sph, "###0.0")
+End Sub
+
+Private Sub countVRs_GotFocus()
+    countVRs.SelStart = 0
+    countVRs.SelLength = Len(countVRs.Text)
+End Sub
+
+Private Sub countVRs_Change()
+    vrs = Val(countVRs.Text) * 0.5
+    weightVRs.Text = vrs
+    
+    totalCount = Val(countDiags) + Val(countOthers) + Val(countSetups) + Val(countVRs)
+    countTotal.Text = totalCount
+    
+    totalWeight = Val(weightDiags) + Val(weightOthers) + Val(weightSetups) + Val(weightVRs)
+    weightTotal.Text = totalWeight
+    
+    Dim total As Double
+    Dim sph As Double
+        
+    total = Val(weightDiags.Text) + Val(weightOthers.Text) + Val(weightSetups.Text) + Val(weightVRs.Text)
+    sph = total / Val(txtHours.Text)
+    lblSPHvalue.Caption = Format$(sph, "###0.0")
+End Sub
+
+Private Sub btnReset_Click()
+    countDiags.Text = ""
+    weightDiags.Text = ""
+    countOthers.Text = ""
+    weightOthers.Text = ""
+    countSetups.Text = ""
+    weightSetups.Text = ""
+    countVRs.Text = ""
+    weightVRs.Text = ""
+    countTotal.Text = ""
+    weightTotal.Text = ""
+    
+    txtHours.Text = 7.5
+    txtHours.SetFocus
+    txtHours.SelStart = 0
+    txtHours.SelLength = Len(txtHours.Text)
+End Sub
+
+Private Sub lblLink_Click()
+    Shell "explorer http://www.leecampbelldeveloper.com"
+End Sub
+
+Private Sub lblLink_MouseMove(button As Integer, shift As Integer, x As Single, y As Single)
+    lblLink.ForeColor = vbBlue
+    lblLink.Font.Underline = True
+End Sub
+
+
+
